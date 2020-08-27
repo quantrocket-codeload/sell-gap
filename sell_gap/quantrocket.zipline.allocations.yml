@@ -1,0 +1,8 @@
+# quantrocket.zipline.allocations.yml
+#
+# This file defines the starting capital to allocate to Zipline strategies.
+#
+
+# replace with your live or paper account number
+DU12345:
+    sell-gap: '1000000 USD'
