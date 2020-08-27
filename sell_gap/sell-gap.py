@@ -75,21 +75,23 @@ def before_trading_start(context, data):
         # start real-time tick data collection for our candidates...
         sids = [asset.real_sid for asset in context.candidates.index]
 
-        # collect the trade/volume data
-        collect_market_data(
-            "us-stk-tick",
-            sids=sids,
-            until="09:32:00 America/New_York")
+        if sids:
 
-        # ...and point Zipline to the derived aggregate db
-        algo.set_realtime_db(
-            "us-stk-tick-1min",
-            fields={
-                "close": "LastPriceClose",
-                "open": "LastPriceOpen",
-                "high": "LastPriceHigh",
-                "low": "LastPriceLow",
-                "volume": "LastSizeSum"}) # for IBKR real-time data, use VolumeClose
+            # collect the trade/volume data
+            collect_market_data(
+                "us-stk-tick",
+                sids=sids,
+                until="09:32:00 America/New_York")
+
+            # ...and point Zipline to the derived aggregate db
+            algo.set_realtime_db(
+                "us-stk-tick-1min",
+                fields={
+                    "close": "LastPriceClose",
+                    "open": "LastPriceOpen",
+                    "high": "LastPriceHigh",
+                    "low": "LastPriceLow",
+                    "volume": "LastSizeSum"}) # for IBKR real-time data, use VolumeClose
 
 def find_down_gaps(context, data):
     """
