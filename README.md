@@ -1,6 +1,6 @@
 # sell-gap
 
-Intraday Zipline strategy for US stocks that sells stocks which gap down after trading above their short-term moving average. Demonstrates live trading.
+Intraday Zipline strategy for US stocks that sells stocks which gap below their moving average after previously trading above it. Demonstrates live trading.
 
 ## Clone in QuantRocket
 
