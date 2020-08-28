@@ -55,10 +55,12 @@ def initialize(context):
         algo.time_rules.market_close(minutes=5),
     )
 
-    #algo.set_commission(commission.PerShare(cost=0.005))
-  #  algo.set_slippage(
-        #slippage.FixedBasisPointsSlippage(
-            #basis_points=5.0))
+    # Set commissions and slippage
+    algo.set_commission(
+        commission.PerShare(cost=0.0))
+    algo.set_slippage(
+        slippage.FixedBasisPointsSlippage(
+            basis_points=3.0))
 
 def before_trading_start(context, data):
     """
