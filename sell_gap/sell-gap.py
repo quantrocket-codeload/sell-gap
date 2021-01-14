@@ -81,19 +81,29 @@ def before_trading_start(context, data):
 
             # collect the trade/volume data
             collect_market_data(
-                "us-stk-tick",
+                "us-stk-realtime",
                 sids=sids,
                 until="09:32:00 America/New_York")
 
             # ...and point Zipline to the derived aggregate db
+            # For Interactive Brokers databases:
             algo.set_realtime_db(
-                "us-stk-tick-1min",
+                "us-stk-realtime-1min",
                 fields={
                     "close": "LastPriceClose",
                     "open": "LastPriceOpen",
                     "high": "LastPriceHigh",
                     "low": "LastPriceLow",
-                    "volume": "LastSizeSum"}) # for IBKR real-time data, use VolumeClose
+                    "volume": "LastSizeSum"})
+            # For Polygon.io databases:
+            # algo.set_realtime_db(
+            #     "us-stk-realtime-1min",
+            #     fields={
+            #         "close": "SecondCloseClose",
+            #         "open": "SecondOpenOpen",
+            #         "high": "SecondHighHigh",
+            #         "low": "SecondLowLow",
+            #         "volume": "SecondVolumeSum"})
 
 def find_down_gaps(context, data):
     """
