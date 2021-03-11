@@ -1,4 +1,4 @@
-# Copyright 2020 QuantRocket LLC - All Rights Reserved
+# Copyright 2021 QuantRocket LLC - All Rights Reserved
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -95,15 +95,15 @@ def before_trading_start(context, data):
                     "high": "LastPriceHigh",
                     "low": "LastPriceLow",
                     "volume": "LastSizeSum"})
-            # For Polygon.io databases:
+            # For Alpaca databases:
             # algo.set_realtime_db(
             #     "us-stk-realtime-1min",
             #     fields={
-            #         "close": "SecondCloseClose",
-            #         "open": "SecondOpenOpen",
-            #         "high": "SecondHighHigh",
-            #         "low": "SecondLowLow",
-            #         "volume": "SecondVolumeSum"})
+            #         "close": "MinuteCloseClose",
+            #         "open": "MinuteOpenOpen",
+            #         "high": "MinuteHighHigh",
+            #         "low": "MinuteLowLow",
+            #         "volume": "MinuteVolumeSum"})
 
 def find_down_gaps(context, data):
     """
