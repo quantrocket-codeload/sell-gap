@@ -13,7 +13,12 @@
 # limitations under the License.
 
 import zipline.api as algo
-from zipline.finance.execution import MarketOrder
+from zipline.pipeline import Pipeline
+from zipline.pipeline.factors import AverageDollarVolume, SimpleMovingAverage, ExponentialWeightedMovingStdDev
+from zipline.pipeline.data.equity_pricing import EquityPricing
+from zipline.pipeline.data.master import SecuritiesMaster
+from zipline.finance.execution import MarketOrder, LimitOrder
+from zipline.finance.order import ORDER_STATUS
 from zipline.finance import slippage, commission
 from quantrocket.realtime import collect_market_data
 from codeload.sell_gap.pipeline import make_pipeline
