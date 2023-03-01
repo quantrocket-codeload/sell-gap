@@ -18,7 +18,7 @@ from zipline.finance import slippage, commission
 from quantrocket.realtime import collect_market_data
 from codeload.sell_gap.pipeline import make_pipeline
 
-def initialize(context):
+def initialize(context: algo.Context):
     """
     Called once at the start of a backtest, and once per day at
     the start of live trading.
@@ -57,7 +57,7 @@ def initialize(context):
         slippage.FixedBasisPointsSlippage(
             basis_points=3.0))
 
-def before_trading_start(context, data):
+def before_trading_start(context: algo.Context, data: algo.BarData):
     """
     Called every day before market open. Gathers today's pipeline
     output and initiates real-time data collection (in live trading).
@@ -100,7 +100,7 @@ def before_trading_start(context, data):
             #         "low": "MinuteLowLow",
             #         "volume": "MinuteVolumeSum"})
 
-def find_down_gaps(context, data):
+def find_down_gaps(context: algo.Context, data: algo.BarData):
     """
     Identify stocks that gapped down below their moving average.
     """
@@ -129,7 +129,7 @@ def find_down_gaps(context, data):
 
     context.assets_to_short = assets_to_short
 
-def short_down_gaps(context, data):
+def short_down_gaps(context: algo.Context, data: algo.BarData):
     """
     Short the stocks that gapped down.
     """
@@ -142,7 +142,7 @@ def short_down_gaps(context, data):
             style=MarketOrder() # for IBKR, specify exchange (e.g. exchange="SMART")
         )
 
-def close_positions(context, data):
+def close_positions(context: algo.Context, data: algo.BarData):
     """
     Closes all positions.
     """
