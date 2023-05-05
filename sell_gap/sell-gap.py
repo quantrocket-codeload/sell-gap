@@ -27,7 +27,7 @@ def initialize(context: algo.Context):
     algo.attach_pipeline(make_pipeline(), 'pipeline')
 
     # Set SPY as benchmark
-    algo.set_benchmark(algo.sid("FIBBG000BDTBL9"))
+    algo.set_benchmark(algo.symbol("SPY"))
 
     # identify down gaps immediately after the opening
     algo.schedule_function(
