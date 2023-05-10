@@ -12,10 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from zipline.pipeline import Pipeline
+from zipline.pipeline import Pipeline, EquityPricing, master
 from zipline.pipeline.factors import AverageDollarVolume, SimpleMovingAverage, ExponentialWeightedMovingStdDev
-from zipline.pipeline.data.equity_pricing import EquityPricing
-from zipline.pipeline.data.master import SecuritiesMaster
 
 def make_pipeline():
     """
@@ -35,7 +33,7 @@ def make_pipeline():
     mavg = SimpleMovingAverage(
         window_length = 20, inputs = [EquityPricing.close])
 
-    are_common_stocks = SecuritiesMaster.usstock_SecurityType2.latest.eq(
+    are_common_stocks = master.SecuritiesMaster.usstock_SecurityType2.latest.eq(
         "Common Stock")
     are_liquid = AverageDollarVolume(window_length=30).percentile_between(90, 100)
     are_above_mavg = EquityPricing.close.latest > mavg
