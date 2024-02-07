@@ -49,9 +49,9 @@ def make_pipeline():
                 window_length=63,
                 decay_rate=0.99)
         },
+        initial_universe=are_common_stocks,
         screen=(
-            are_common_stocks
-            & are_liquid
+            are_liquid
             & are_above_mavg
             & are_not_too_cheap
             & are_not_too_expensive
